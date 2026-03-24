@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Android
+*.apk
+*.aab
+*.dex
+*.class
+
+# Kotlin
+*.kotlin_module
+
+# Test output
+test-results/
+reports/
+
+# Generated files
+generated/
