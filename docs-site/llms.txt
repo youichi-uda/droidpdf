@@ -58,7 +58,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts - add dependency
 dependencies {
-    implementation("com.github.youichi-uda:droidpdf:v1.0.0")
+    implementation("com.github.youichi-uda:droidpdf:v1.0.1")
 }
 ```
 
