@@ -161,6 +161,8 @@ class PdfDocument private constructor(
         val pageRefs =
             pages.mapIndexed { index, page ->
                 val pageDict = page.buildPageDictionary(pagesRef, pageContentRefs[index])
+                // Extract streams (fonts, images) as indirect objects
+                extractIndirectObjects(pageDict, writer)
                 writer.addObject(pageDict)
             }
 
@@ -179,6 +181,66 @@ class PdfDocument private constructor(
         val trailerExtras = PdfDictionary()
         trailerExtras.put("Root", catalogRef)
         writer.write(trailerExtras)
+    }
+
+    /**
+     * Recursively walk a dictionary and replace any inline PdfStream or
+     * complex PdfDictionary (font descriptors, XObjects) with indirect references.
+     */
+    private fun extractIndirectObjects(
+        dict: PdfDictionary,
+        writer: PdfWriter,
+    ) {
+        val replacements = mutableListOf<Pair<PdfName, PdfIndirectReference>>()
+
+        for ((key, value) in dict.entries) {
+            when (value) {
+                is PdfStream -> {
+                    // Streams must always be indirect objects in PDF
+                    val ref = writer.addObject(value)
+                    replacements.add(key to ref)
+                }
+                is PdfDictionary -> {
+                    // Check if this dict contains streams (recurse)
+                    extractIndirectObjects(value, writer)
+                    // Font dictionaries with embedded data should be indirect
+                    val type = value.getAsName("Type")?.value
+                    if (type in listOf("Font", "FontDescriptor", "XObject")) {
+                        val ref = writer.addObject(value)
+                        replacements.add(key to ref)
+                    }
+                }
+                is PdfArray -> {
+                    extractIndirectObjectsFromArray(value, writer)
+                }
+                else -> {}
+            }
+        }
+
+        for ((key, ref) in replacements) {
+            dict.put(key, ref)
+        }
+    }
+
+    private fun extractIndirectObjectsFromArray(
+        array: PdfArray,
+        writer: PdfWriter,
+    ) {
+        for (i in 0 until array.size()) {
+            when (val elem = array[i]) {
+                is PdfStream -> {
+                    val ref = writer.addObject(elem)
+                    array.elements[i] = ref
+                }
+                is PdfDictionary -> {
+                    extractIndirectObjects(elem, writer)
+                }
+                is PdfArray -> {
+                    extractIndirectObjectsFromArray(elem, writer)
+                }
+                else -> {}
+            }
+        }
     }
 
     private fun loadPagesFromReader() {
