@@ -123,11 +123,9 @@ com.droidpdf.security       PdfEncryption (AES-128/256)
 | Plan | Price | For |
 |---|---|---|
 | **Personal** | Free | Personal, non-commercial, OSS |
-| **Indie** | $99/year | Individual developers (revenue < $100K) |
-| **Startup** | $399/year | Small teams (revenue < $1M) |
-| **Enterprise** | Contact us | Large teams, no revenue limit |
+| **Commercial** | $99/year | Any commercial app — any team size, any revenue |
 
-The library is fully functional without a license key. A single warning log is emitted per session for unlicensed use.
+Free for personal use. 7-day free trial for commercial. The library is fully functional without a license key — a single warning log is emitted per session.
 
 **[Buy a license](https://xxxxx.gumroad.com/l/droidpdf)**
 
