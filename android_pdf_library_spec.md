@@ -258,7 +258,7 @@ pdf.close()
 
 ```
 W/DroidPDF: No license key set. Commercial use requires a license.
-W/DroidPDF: Purchase at https://xxxxx.gumroad.com/l/droidpdf
+W/DroidPDF: Purchase at https://y1uda.gumroad.com/l/DroidPDF
 ```
 
 ### インフラ構成（最小構成）

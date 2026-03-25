@@ -127,7 +127,7 @@ com.droidpdf.security       PdfEncryption (AES-128/256)
 
 Free for personal use. 7-day free trial for commercial. The library is fully functional without a license key — a single warning log is emitted per session.
 
-**[Buy a license](https://xxxxx.gumroad.com/l/droidpdf)**
+**[Buy a license](https://y1uda.gumroad.com/l/DroidPDF)**
 
 ## Documentation
 
