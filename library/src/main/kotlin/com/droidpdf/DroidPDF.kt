@@ -25,7 +25,7 @@ object DroidPDF {
     internal fun warnIfUnlicensed() {
         if (licenseKey == null) {
             PdfLog.w("No license key set. Commercial use requires a license.")
-            PdfLog.w("Purchase at https://xxxxx.gumroad.com/l/droidpdf")
+            PdfLog.w("Purchase at https://y1uda.gumroad.com/l/DroidPDF")
         }
     }
 }
