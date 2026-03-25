@@ -11,6 +11,7 @@ class PdfPage internal constructor(
     private val fonts = mutableMapOf<String, PdfDictionary>()
     private val xObjects = mutableMapOf<String, PdfObject>()
     internal var sourceDictionary: PdfDictionary? = null
+    internal val annotations = mutableListOf<PdfDictionary>()
     private var rotation: Int = 0
 
     /**
@@ -38,6 +39,13 @@ class PdfPage internal constructor(
      * Get the page size.
      */
     fun getPageSize(): PageSize = pageSize
+
+    /**
+     * Add an annotation dictionary to this page.
+     */
+    fun addAnnotation(annotation: PdfDictionary) {
+        annotations.add(annotation)
+    }
 
     /**
      * Add raw content stream operations.
@@ -119,6 +127,13 @@ class PdfPage internal constructor(
 
         if (contentRef != null) {
             dict.put(PdfName.CONTENTS, contentRef)
+        }
+
+        // Annotations (ISO 32000-1, 12.5)
+        if (annotations.isNotEmpty()) {
+            val annotsArray = PdfArray()
+            annotations.forEach { annotsArray.add(it) }
+            dict.put("Annots", annotsArray)
         }
 
         // Rotation (ISO 32000-1, Table 30)
