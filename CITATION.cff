@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "DroidPDF"
+abstract: "Kotlin-native PDF library for Android. Create, edit, merge, split, annotate, encrypt, and extract text from PDF documents."
+license: BSL-1.1
+url: "https://droidpdf.abyo.net"
+repository-code: "https://github.com/youichi-uda/droidpdf"
+keywords:
+  - android
+  - kotlin
+  - pdf
+  - library
+  - sdk
+  - pdf-generation
+  - pdf-manipulation
