@@ -6,12 +6,11 @@ DroidPDF - Kotlin PDF Library for Android
 ## 短い説明 (Summary)
 Kotlin-native PDF library for Android. Create, edit, merge, split, encrypt PDFs. Affordable iText7 alternative.
 
+## 価格
+$99/year（サブスクリプション、年額）
+7日間フリートライアル有効にする
+
 ## 商品説明 (Gumroadリッチテキストエディタに貼り付け)
-
-※以下はGumroadのリッチテキストエディタにそのまま貼り付けるプレーンテキスト。
-※見出し・太字・リストはGumroadのエディタ機能で手動設定する。
-
----
 
 【貼り付け開始】
 
@@ -57,6 +56,8 @@ What you get
 
 Your purchase gives you a license key that removes the warning log and authorizes commercial use. The library works identically with or without a key — no features are locked.
 
+Start with a 7-day free trial. Cancel anytime.
+
 Documentation: https://droidpdf.abyo.net/docs/
 API Reference: https://droidpdf.abyo.net/api/
 GitHub: https://github.com/youichi-uda/droidpdf
@@ -70,8 +71,8 @@ A: No. DroidPDF works without a license key. A warning log is shown once per ses
 Q: Can I use DroidPDF in my free app?
 A: If your app is non-commercial (no ads, no in-app purchases, no paid downloads), you can use DroidPDF for free without a license key.
 
-Q: Is there a trial?
-A: The library is fully functional without a license key. You can evaluate all features before purchasing.
+Q: Is there a free trial?
+A: Yes, 7 days. Start the trial on Gumroad — no charge until the trial ends.
 
 Q: What happens when my license expires?
 A: Your existing builds continue to work. You just won't receive updates until you renew.
@@ -79,28 +80,7 @@ A: Your existing builds continue to work. You just won't receive updates until y
 Q: Can I get a refund?
 A: Yes, within 30 days of purchase if the library doesn't meet your needs.
 
-Q: Do you offer Enterprise pricing?
-A: Yes, contact us for custom Enterprise licensing for teams larger than 10 or revenue above $1M.
-
 【貼り付け終了】
-
----
-
-## 価格プラン（Gumroadで2つの商品 or バリアント）
-
-### Indie Plan — $99/year（サブスクリプション、年額）
-For individual developers
-Commercial apps with revenue under $100K/year
-1 license key
-Email support
-
-### Startup Plan — $399/year（サブスクリプション、年額）
-For small teams (up to 10 developers)
-Commercial apps with revenue under $1M/year
-1 license key (team-wide)
-Priority support
-
----
 
 ## タグ (Tags)
 android, kotlin, pdf, library, sdk, mobile, development
@@ -112,4 +92,10 @@ Software Development
 DroidPDF
 Kotlin PDF Library for Android
 Create • Edit • Merge • Encrypt
-$99/year
+$99/year — 7-day free trial
+
+## Gumroad設定メモ
+- 価格: $99
+- リカーリング: Yearly
+- フリートライアル: 7 days
+- サブスクリプション型で設定

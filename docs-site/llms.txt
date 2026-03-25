@@ -6,7 +6,7 @@
 
 - Language: Kotlin (Android)
 - Min SDK: Android API 26 (Android 8.0)
-- License: Free for personal/non-commercial use. Commercial: $99/year (Indie), $399/year (Startup)
+- License: Free for personal/non-commercial use. Commercial: $99/year (any team size). 7-day free trial.
 - PDF Spec: ISO 32000-1 (PDF 1.7)
 - Font Support: Standard 14 fonts + TTF/OTF embedding via Apache FontBox
 
