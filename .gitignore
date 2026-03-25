@@ -27,3 +27,7 @@ hs_err_pid*.log
 
 # Wrangler
 .wrangler/
+
+# Internal docs
+android_pdf_library_spec.md
+gumroad-listing.md
