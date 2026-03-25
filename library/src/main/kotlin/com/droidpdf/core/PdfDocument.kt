@@ -80,6 +80,52 @@ class PdfDocument private constructor(
     val numberOfPages: Int get() = pages.size
 
     /**
+     * Get all pages as an immutable list.
+     */
+    fun getPages(): List<PdfPage> = pages.toList()
+
+    /**
+     * Remove a page by index (0-based).
+     */
+    fun removePage(index: Int) {
+        require(index in pages.indices) { "Page index $index out of range" }
+        pages.removeAt(index)
+    }
+
+    /**
+     * Move a page from one position to another.
+     */
+    fun movePage(
+        fromIndex: Int,
+        toIndex: Int,
+    ) {
+        require(fromIndex in pages.indices) { "fromIndex $fromIndex out of range" }
+        require(toIndex in pages.indices) { "toIndex $toIndex out of range" }
+        val page = pages.removeAt(fromIndex)
+        pages.add(toIndex, page)
+    }
+
+    /**
+     * Add an existing page (from another document or cloned).
+     */
+    fun addPage(page: PdfPage) {
+        check(!closed) { "Document is closed" }
+        pages.add(page)
+    }
+
+    /**
+     * Insert an existing page at the given index.
+     */
+    fun addPage(
+        index: Int,
+        page: PdfPage,
+    ) {
+        check(!closed) { "Document is closed" }
+        require(index in 0..pages.size) { "Index $index out of range" }
+        pages.add(index, page)
+    }
+
+    /**
      * Close the document and write to output if in write mode.
      */
     fun close() {

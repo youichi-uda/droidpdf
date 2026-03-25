@@ -10,7 +10,8 @@ class PdfPage internal constructor(
     private val contentOperations = mutableListOf<String>()
     private val fonts = mutableMapOf<String, PdfDictionary>()
     private val xObjects = mutableMapOf<String, PdfObject>()
-    private var sourceDictionary: PdfDictionary? = null
+    internal var sourceDictionary: PdfDictionary? = null
+    private var rotation: Int = 0
 
     /**
      * Get the page width in points.
@@ -21,6 +22,22 @@ class PdfPage internal constructor(
      * Get the page height in points.
      */
     val height: Float get() = pageSize.height
+
+    /**
+     * Get or set the page rotation in degrees (0, 90, 180, 270).
+     */
+    fun getRotation(): Int = rotation
+
+    fun setRotation(degrees: Int): PdfPage {
+        require(degrees % 90 == 0) { "Rotation must be a multiple of 90" }
+        rotation = ((degrees % 360) + 360) % 360
+        return this
+    }
+
+    /**
+     * Get the page size.
+     */
+    fun getPageSize(): PageSize = pageSize
 
     /**
      * Add raw content stream operations.
@@ -104,6 +121,23 @@ class PdfPage internal constructor(
             dict.put(PdfName.CONTENTS, contentRef)
         }
 
+        // Rotation (ISO 32000-1, Table 30)
+        if (rotation != 0) {
+            dict.put("Rotate", PdfInteger(rotation))
+        }
+
+        // Copy over source dictionary entries for pages from other PDFs
+        sourceDictionary?.let { src ->
+            // Copy resources from source if we don't have our own
+            if (fonts.isEmpty() && xObjects.isEmpty()) {
+                src["Resources"]?.let { dict.put(PdfName.RESOURCES, it) }
+            }
+            // Copy contents from source if we don't have new content
+            if (contentRef == null) {
+                src[PdfName.CONTENTS]?.let { dict.put(PdfName.CONTENTS, it) }
+            }
+        }
+
         return dict
     }
 
@@ -133,6 +167,9 @@ class PdfPage internal constructor(
 
             val page = PdfPage(document, pageSize)
             page.sourceDictionary = dict
+            // Read existing rotation
+            val rotate = dict.getAsInteger("Rotate")?.value?.toInt() ?: 0
+            page.rotation = rotate
             return page
         }
     }
