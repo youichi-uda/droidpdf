@@ -103,24 +103,28 @@
     <p>DroidPDF is a Kotlin-native PDF library for Android. Add it to your project and start creating, editing, and manipulating PDF documents in minutes.</p>
 
     <h2 id="installation">Installation</h2>
-    <h3>Gradle (Kotlin DSL)</h3>
-    <p>Add DroidPDF to your module's <code>build.gradle.kts</code>:</p>
-<pre><code>dependencies {
-    implementation("com.droidpdf:droidpdf:1.0.0")
-}</code></pre>
-
-    <h3>Gradle (Groovy)</h3>
-<pre><code>dependencies {
-    implementation 'com.droidpdf:droidpdf:1.0.0'
-}</code></pre>
-
-    <h3>Repository</h3>
-    <p>Make sure you have Maven Central or JitPack in your project's <code>settings.gradle.kts</code>:</p>
+    <h3>1. Add JitPack repository</h3>
+    <p>In your project's <code>settings.gradle.kts</code>:</p>
 <pre><code>dependencyResolutionManagement {
     repositories {
+        google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }</code></pre>
+
+    <h3>2. Add the dependency</h3>
+    <p>In your module's <code>build.gradle.kts</code>:</p>
+<pre><code>dependencies {
+    implementation("com.github.youichi-uda:droidpdf:v1.0.0")
+}</code></pre>
+
+    <h3>Groovy</h3>
+<pre><code>// settings.gradle
+maven { url 'https://jitpack.io' }
+
+// build.gradle
+implementation 'com.github.youichi-uda:droidpdf:v1.0.0'</code></pre>
 
     <h2 id="requirements">Requirements</h2>
     <table>

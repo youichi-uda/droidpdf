@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint")
+    `maven-publish`
 }
 
 android {
@@ -50,4 +51,29 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.youichi-uda"
+                artifactId = "droidpdf"
+                version = "1.0.0"
+
+                pom {
+                    name.set("DroidPDF")
+                    description.set("Kotlin-native PDF library for Android")
+                    url.set("https://droidpdf.abyo.net")
+                    licenses {
+                        license {
+                            name.set("Business Source License 1.1")
+                            url.set("https://github.com/youichi-uda/droidpdf/blob/main/LICENSE")
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
