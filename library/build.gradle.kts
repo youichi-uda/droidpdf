@@ -43,6 +43,7 @@ dependencies {
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.11.4")
     testImplementation("org.robolectric:robolectric:4.14.1")
     testImplementation("com.google.truth:truth:1.4.4")
 }
