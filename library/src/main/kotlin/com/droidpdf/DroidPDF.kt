@@ -1,13 +1,12 @@
 package com.droidpdf
 
 import android.content.Context
-import android.util.Log
+import com.droidpdf.core.PdfLog
 
 /**
  * DroidPDF library entry point.
  */
 object DroidPDF {
-    private const val TAG = "DroidPDF"
     internal var licenseKey: String? = null
     internal var isInitialized = false
 
@@ -25,8 +24,8 @@ object DroidPDF {
 
     internal fun warnIfUnlicensed() {
         if (licenseKey == null) {
-            Log.w(TAG, "No license key set. Commercial use requires a license.")
-            Log.w(TAG, "Purchase at https://xxxxx.gumroad.com/l/droidpdf")
+            PdfLog.w("No license key set. Commercial use requires a license.")
+            PdfLog.w("Purchase at https://xxxxx.gumroad.com/l/droidpdf")
         }
     }
 }
