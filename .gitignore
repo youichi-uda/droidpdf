@@ -24,3 +24,6 @@ reports/
 # Generated files
 generated/
 hs_err_pid*.log
+
+# Wrangler
+.wrangler/

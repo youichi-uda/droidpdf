@@ -1,0 +1,87 @@
+# DroidPDF - Kotlin PDF Library for Android
+
+> DroidPDF is a Kotlin-native PDF library for Android (.aar). It provides PDF generation, editing, merging, splitting, annotations, forms, encryption, and text extraction. It is ISO 32000-1 (PDF 1.7) compliant and designed as an affordable alternative to iText7.
+
+## Key Facts
+
+- Language: Kotlin (Android)
+- Min SDK: Android API 26 (Android 8.0)
+- License: Free for personal/non-commercial use. Commercial: $99/year (Indie), $399/year (Startup)
+- PDF Spec: ISO 32000-1 (PDF 1.7)
+- Font Support: Standard 14 fonts + TTF/OTF embedding via Apache FontBox
+
+## Features
+
+### PDF Generation
+- Create PDFs with text, images (JPEG/PNG/WebP), and tables
+- High-level layout API: Document, Paragraph, Table, Image
+- Low-level canvas API for direct content stream manipulation
+- Custom page sizes (A4, Letter, Legal, A3, A5, custom)
+- Font embedding with text measurement
+
+### Page Operations
+- Merge multiple PDFs (full or partial page ranges)
+- Split PDFs by page range or individual pages
+- Rotate pages (0°, 90°, 180°, 270°)
+- Reorder, insert, and delete pages
+
+### Annotations (11 types)
+- Text (sticky notes), Highlight, Underline, Strikeout
+- FreeText, Stamp (Approved/Draft/Confidential/etc.)
+- Square, Circle, Line, Ink (freehand), Link (URI/page)
+
+### Forms (AcroForm)
+- TextField (single/multiline, max length)
+- CheckboxField
+- RadioButtonField (groups)
+- DropdownField (combo box)
+
+### Security
+- AES-128 and AES-256 encryption
+- User and owner passwords
+- Permission flags: print, copy, modify, annotate, fill
+
+### Text Extraction
+- Extract text from all pages or specific pages
+- Case-insensitive search with page index results
+- FlateDecode stream decompression
+
+## Installation
+
+```kotlin
+// build.gradle.kts
+dependencies {
+    implementation("com.droidpdf:droidpdf:1.0.0")
+}
+```
+
+## Quick Start
+
+```kotlin
+val pdf = PdfDocument(outputStream)
+val document = Document(pdf)
+
+document.add(Paragraph("Hello, DroidPDF!").setFontSize(16f))
+document.add(Table(3).apply {
+    addCell("Name")
+    addCell("Age")
+    addCell("City")
+})
+document.close()
+```
+
+## Package Structure
+
+- `com.droidpdf.core` — PdfDocument, PdfPage, PdfReader, PdfWriter, TextExtractor
+- `com.droidpdf.content` — PdfCanvas, PdfFont, PdfImage
+- `com.droidpdf.layout` — Document, Paragraph, Table, Image
+- `com.droidpdf.annotations` — All annotation types
+- `com.droidpdf.forms` — AcroForm fields
+- `com.droidpdf.manipulation` — PdfMerger, PdfSplitter, PageOperations
+- `com.droidpdf.security` — PdfEncryption
+
+## Documentation
+
+- Website: https://droidpdf.abyo.net
+- Getting Started: https://droidpdf.abyo.net/docs/
+- API Reference: https://droidpdf.abyo.net/api/

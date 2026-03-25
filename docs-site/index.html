@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DroidPDF - Affordable PDF Library for Android | Kotlin PDF SDK</title>
+  <meta name="description" content="DroidPDF is a Kotlin-native PDF library for Android. Create, edit, merge, split PDFs with text, images, tables, annotations, and forms. Starting at $99/year for commercial use.">
+  <meta name="keywords" content="Android PDF library, Kotlin PDF SDK, PDF generation Android, iText alternative, PDF merge split Android, AcroForm Android, PDF annotations Kotlin">
+  <meta name="author" content="DroidPDF">
+  <meta name="google-site-verification" content="j_38B31_Zs4aYgwSYADEwQkwdIMI8jhr4Dz47VPXUrE">
+  <link rel="canonical" href="https://droidpdf.abyo.net/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://droidpdf.abyo.net/">
+  <meta property="og:title" content="DroidPDF - Affordable PDF Library for Android">
+  <meta property="og:description" content="Kotlin-native PDF library for Android. Create, edit, merge, split PDFs. iText7 alternative starting at $99/year.">
+  <meta property="og:site_name" content="DroidPDF">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DroidPDF - Affordable PDF Library for Android">
+  <meta name="twitter:description" content="Kotlin-native PDF library for Android. Create, edit, merge, split PDFs. Starting at $99/year.">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DroidPDF",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Android",
+    "programmingLanguage": "Kotlin",
+    "description": "Kotlin-native PDF library for Android. Create, edit, merge, split, encrypt PDFs with text, images, tables, annotations, and forms.",
+    "url": "https://droidpdf.abyo.net",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Personal",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free for personal, non-commercial, and open-source use"
+      },
+      {
+        "@type": "Offer",
+        "name": "Indie",
+        "price": "99",
+        "priceCurrency": "USD",
+        "billingDuration": "P1Y",
+        "description": "For individual developers with commercial apps (revenue under $100K)"
+      },
+      {
+        "@type": "Offer",
+        "name": "Startup",
+        "price": "399",
+        "priceCurrency": "USD",
+        "billingDuration": "P1Y",
+        "description": "For small teams (revenue under $1M)"
+      }
+    ],
+    "featureList": [
+      "PDF generation with text, images, and tables",
+      "Page operations: merge, split, rotate, reorder",
+      "11 annotation types including highlights, stamps, and ink",
+      "AcroForm support: text fields, checkboxes, radio buttons, dropdowns",
+      "AES-128 and AES-256 encryption",
+      "Text extraction and search",
+      "Standard 14 fonts and TTF/OTF embedding",
+      "ISO 32000-1 (PDF 1.7) compliant"
+    ]
+  }
+  </script>
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is DroidPDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DroidPDF is a Kotlin-native PDF library for Android that lets you create, edit, merge, split, and encrypt PDF documents. It's designed as an affordable alternative to iText7 for Android developers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does DroidPDF cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DroidPDF is free for personal and non-commercial use. Commercial licenses start at $99/year for indie developers and $399/year for startups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is DroidPDF compatible with iText7?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DroidPDF follows the same concepts and API structure as iText7 but with its own naming. A migration guide with a class-by-class mapping is provided to make switching easy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What PDF features does DroidPDF support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DroidPDF supports PDF generation (text, images, tables), page operations (merge, split, rotate), 11 annotation types, AcroForm fields, AES encryption, text extraction, and font embedding. It's ISO 32000-1 (PDF 1.7) compliant."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --code-bg: #1e293b;
+      --success: #10b981;
+      --max-w: 1120px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height: 1.6; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    code { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    pre { background: var(--code-bg); color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+    pre code { background: none; padding: 0; color: inherit; }
+
+    /* Nav */
+    nav { border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); z-index: 100; }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    nav .logo { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    nav .logo span { color: var(--primary); }
+    nav ul { list-style: none; display: flex; gap: 24px; }
+    nav ul a { color: var(--text-light); font-size: 0.95rem; }
+    nav ul a:hover { color: var(--primary); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { font-size: 1.25rem; color: var(--text-light); max-width: 640px; margin: 0 auto 32px; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.2s; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); text-decoration: none; }
+    .btn-outline { border: 2px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); text-decoration: none; }
+
+    /* Code Preview */
+    .code-preview { max-width: 680px; margin: 48px auto 0; text-align: left; }
+
+    /* Features */
+    .features { padding: 80px 0; background: var(--bg-alt); }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .feature-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .feature-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .feature-card p { color: var(--text-light); font-size: 0.95rem; }
+
+    /* Comparison */
+    .comparison { padding: 80px 0; }
+    .comparison h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .comparison table { width: 100%; border-collapse: collapse; }
+    .comparison th, .comparison td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+    .comparison th { font-weight: 600; background: var(--bg-alt); }
+    .comparison .check { color: var(--success); font-weight: 700; }
+    .comparison .cross { color: var(--text-light); }
+
+    /* Pricing */
+    .pricing { padding: 80px 0; background: var(--bg-alt); }
+    .pricing h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .price-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 32px; text-align: center; }
+    .price-card.featured { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+    .price-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .price-card .price { font-size: 2.5rem; font-weight: 800; margin: 16px 0; }
+    .price-card .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+    .price-card .desc { color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px; }
+    .price-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+    .price-card li { padding: 6px 0; font-size: 0.95rem; }
+    .price-card li::before { content: "✓ "; color: var(--success); font-weight: 700; }
+
+    /* Footer */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-light); font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1.05rem; }
+      nav ul { gap: 16px; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">Droid<span>PDF</span></a>
+    <ul>
+      <li><a href="/docs/">Docs</a></li>
+      <li><a href="/api/">API Reference</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://github.com/user/droidpdf">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>The <span>affordable</span> PDF library<br>for Android</h1>
+      <p>Kotlin-native PDF generation, editing, and manipulation. An iText7 alternative starting at $99/year for commercial use. Free for personal projects.</p>
+      <div class="hero-buttons">
+        <a href="/docs/" class="btn btn-primary">Get Started</a>
+        <a href="#pricing" class="btn btn-outline">View Pricing</a>
+      </div>
+
+      <div class="code-preview">
+<pre><code><span style="color:#94a3b8">// Generate a PDF in 5 lines</span>
+<span style="color:#c084fc">val</span> writer = PdfWriter(outputStream)
+<span style="color:#c084fc">val</span> pdf = PdfDocument(writer)
+<span style="color:#c084fc">val</span> document = Document(pdf)
+
+document.add(Paragraph(<span style="color:#86efac">"Hello, DroidPDF!"</span>).setFontSize(<span style="color:#fcd34d">16f</span>))
+document.add(
+    Table(<span style="color:#fcd34d">3</span>).apply {
+        addCell(<span style="color:#86efac">"Name"</span>)
+        addCell(<span style="color:#86efac">"Age"</span>)
+        addCell(<span style="color:#86efac">"City"</span>)
+    }
+)
+document.close()</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Everything you need to work with PDFs on Android</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>PDF Generation</h3>
+          <p>Create PDFs with text, images, and tables. Full font embedding (TTF/OTF) including CJK support. Standard 14 fonts built in.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Page Operations</h3>
+          <p>Merge multiple PDFs, split by page ranges, rotate, reorder, insert, and delete pages with a fluent API.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Annotations</h3>
+          <p>11 annotation types: highlights, underlines, sticky notes, stamps, shapes, ink drawing, and hyperlinks.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Forms (AcroForm)</h3>
+          <p>Create and fill text fields, checkboxes, radio buttons, and dropdowns. Read and write form data programmatically.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Encryption</h3>
+          <p>Protect PDFs with AES-128 or AES-256 encryption. Set granular permissions: printing, copying, modifying, and more.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Text Extraction</h3>
+          <p>Extract text from existing PDFs page by page. Search with case-insensitive matching and get results with page references.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparison">
+    <div class="container">
+      <h2>How DroidPDF compares</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th></th><th>DroidPDF</th><th>iText7</th><th>PdfiumAndroid</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PDF generation</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td></tr>
+          <tr><td>Page operations</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td></tr>
+          <tr><td>Annotations</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td></tr>
+          <tr><td>Forms</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td></tr>
+          <tr><td>Encryption</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td></tr>
+          <tr><td>Kotlin-native</td><td class="check">Yes</td><td class="cross">Java</td><td class="cross">C++ / JNI</td></tr>
+          <tr><td>Transparent pricing</td><td class="check">$99/yr</td><td class="cross">Quote required</td><td class="check">Free</td></tr>
+          <tr><td>Android optimized</td><td class="check">Yes</td><td class="cross">JVM port</td><td class="check">Yes</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Simple, transparent pricing</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Personal</h3>
+          <div class="price">Free</div>
+          <p class="desc">For learning, non-commercial, and open-source projects</p>
+          <ul>
+            <li>All features included</li>
+            <li>No license key needed</li>
+            <li>Community support</li>
+          </ul>
+          <a href="/docs/" class="btn btn-outline" style="width:100%">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <h3>Indie</h3>
+          <div class="price">$99 <span>/ year</span></div>
+          <p class="desc">For individual developers with commercial apps (revenue &lt; $100K)</p>
+          <ul>
+            <li>All features included</li>
+            <li>License key provided</li>
+            <li>Email support</li>
+          </ul>
+          <a href="https://xxxxx.gumroad.com/l/droidpdf" class="btn btn-primary" style="width:100%">Buy License</a>
+        </div>
+        <div class="price-card">
+          <h3>Startup</h3>
+          <div class="price">$399 <span>/ year</span></div>
+          <p class="desc">For small teams (revenue &lt; $1M)</p>
+          <ul>
+            <li>All features included</li>
+            <li>License key provided</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="https://xxxxx.gumroad.com/l/droidpdf" class="btn btn-primary" style="width:100%">Buy License</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 DroidPDF. ISO 32000-1 (PDF 1.7) compliant.</p>
+  </div>
+</footer>
+
+</body>
+</html>
