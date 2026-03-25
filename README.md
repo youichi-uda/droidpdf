@@ -28,10 +28,21 @@ An affordable [iText7](https://itextpdf.com/) alternative. Free for personal use
 
 ### Installation
 
+Add JitPack repository to your `settings.gradle.kts`:
+
 ```kotlin
-// build.gradle.kts
+dependencyResolutionManagement {
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+Add the dependency to your module's `build.gradle.kts`:
+
+```kotlin
 dependencies {
-    implementation("com.droidpdf:droidpdf:1.0.0")
+    implementation("com.github.youichi-uda:droidpdf:v1.0.0")
 }
 ```
 

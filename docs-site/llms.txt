@@ -49,9 +49,16 @@
 ## Installation
 
 ```kotlin
-// build.gradle.kts
+// settings.gradle.kts - add JitPack repository
+dependencyResolutionManagement {
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+
+// build.gradle.kts - add dependency
 dependencies {
-    implementation("com.droidpdf:droidpdf:1.0.0")
+    implementation("com.github.youichi-uda:droidpdf:v1.0.0")
 }
 ```
 
