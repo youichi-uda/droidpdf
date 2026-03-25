@@ -31,3 +31,6 @@ hs_err_pid*.log
 # Internal docs
 android_pdf_library_spec.md
 gumroad-listing.md
+
+# MCP config
+.mcp.json
