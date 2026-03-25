@@ -72,13 +72,13 @@ Q: Can I use DroidPDF in my free app?
 A: If your app is non-commercial (no ads, no in-app purchases, no paid downloads), you can use DroidPDF for free without a license key.
 
 Q: Is there a free trial?
-A: Yes, 7 days. Start the trial on Gumroad — no charge until the trial ends.
+A: Yes, 7 days. No charge until the trial ends. Cancel anytime during the trial if it doesn't fit your needs.
 
 Q: What happens when my license expires?
 A: Your existing builds continue to work. You just won't receive updates until you renew.
 
 Q: Can I get a refund?
-A: Yes, within 30 days of purchase if the library doesn't meet your needs.
+A: No refunds. Please use the 7-day free trial to evaluate before committing.
 
 【貼り付け終了】
 
