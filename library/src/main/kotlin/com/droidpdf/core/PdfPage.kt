@@ -9,6 +9,7 @@ class PdfPage internal constructor(
 ) {
     private val contentOperations = mutableListOf<String>()
     private val fonts = mutableMapOf<String, PdfDictionary>()
+    private val xObjects = mutableMapOf<String, PdfObject>()
     private var sourceDictionary: PdfDictionary? = null
 
     /**
@@ -36,6 +37,16 @@ class PdfPage internal constructor(
     fun addFont(fontDict: PdfDictionary): String {
         val name = "F${fonts.size + 1}"
         fonts[name] = fontDict
+        return name
+    }
+
+    /**
+     * Register an XObject (image) for use on this page.
+     * Returns the XObject resource name (e.g., "Im1").
+     */
+    fun addXObject(xObject: PdfObject): String {
+        val name = "Im${xObjects.size + 1}"
+        xObjects[name] = xObject
         return name
     }
 
@@ -73,11 +84,20 @@ class PdfPage internal constructor(
             }
             resources.put(PdfName.FONT, fontDict)
         }
+        if (xObjects.isNotEmpty()) {
+            val xObjDict = PdfDictionary()
+            xObjects.forEach { (name, xObj) ->
+                xObjDict.put(name, xObj)
+            }
+            resources.put("XObject", xObjDict)
+        }
         // ProcSet (recommended for compatibility)
-        resources.put(
-            PdfName.PROCSET,
-            PdfArray(PdfName.PDF, PdfName.TEXT),
-        )
+        val procSet = PdfArray(PdfName.PDF, PdfName.TEXT)
+        if (xObjects.isNotEmpty()) {
+            procSet.add(PdfName.IMAGE_C)
+            procSet.add(PdfName.IMAGE_B)
+        }
+        resources.put(PdfName.PROCSET, procSet)
         dict.put(PdfName.RESOURCES, resources)
 
         if (contentRef != null) {
