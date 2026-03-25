@@ -196,12 +196,14 @@ class PdfStructureTest {
             .endText()
             .flush()
 
-        PdfTextAnnotation(Rectangle(72f, 700f, 30f, 30f))
+        // Text baseline is at y=750, font size 12pt
+        // Ascent ~9.6pt, descent ~2.4pt → text visual range: y≈748 to y≈760
+        PdfTextAnnotation(Rectangle(280f, 748f, 24f, 24f))
             .setContents("A sticky note")
             .setColor(Color.YELLOW)
             .addTo(page)
 
-        PdfHighlightAnnotation(Rectangle(72f, 740f, 200f, 14f))
+        PdfHighlightAnnotation(Rectangle(72f, 748f, 200f, 12f))
             .setColor(Color.YELLOW)
             .addTo(page)
 
