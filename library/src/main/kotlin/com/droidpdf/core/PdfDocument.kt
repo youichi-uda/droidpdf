@@ -196,6 +196,8 @@ class PdfDocument private constructor(
         for ((key, value) in dict.entries) {
             when (value) {
                 is PdfStream -> {
+                    // Recurse into the stream's own dictionary first
+                    extractIndirectObjects(value.dictionary, writer)
                     // Streams must always be indirect objects in PDF
                     val ref = writer.addObject(value)
                     replacements.add(key to ref)
