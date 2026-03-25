@@ -140,6 +140,31 @@ class PdfImage private constructor(
             return PdfImage(stream, width, height)
         }
 
+        /**
+         * Create a PdfImage from raw RGB byte data (no Android dependency).
+         * Data must be width*height*3 bytes in R,G,B order, top-to-bottom.
+         */
+        fun fromRgbBytes(
+            rgbData: ByteArray,
+            width: Int,
+            height: Int,
+        ): PdfImage {
+            require(rgbData.size == width * height * 3) {
+                "Expected ${width * height * 3} bytes, got ${rgbData.size}"
+            }
+            val compressed = flateCompress(rgbData)
+            val stream = PdfStream()
+            stream.data = compressed
+            stream.dictionary.put(PdfName.TYPE, PdfName("XObject"))
+            stream.dictionary.put(PdfName.SUBTYPE, PdfName("Image"))
+            stream.dictionary.put("Width", PdfInteger(width))
+            stream.dictionary.put("Height", PdfInteger(height))
+            stream.dictionary.put("ColorSpace", PdfName("DeviceRGB"))
+            stream.dictionary.put("BitsPerComponent", PdfInteger(8))
+            stream.dictionary.put(PdfName.FILTER, PdfName.FLATE_DECODE)
+            return PdfImage(stream, width, height)
+        }
+
         private fun flateCompress(data: ByteArray): ByteArray {
             val output = ByteArrayOutputStream()
             java.util.zip.DeflaterOutputStream(output).use { it.write(data) }
